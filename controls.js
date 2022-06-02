@@ -25,8 +25,8 @@ class Controls {
           break;
       }
       console.table(this);
-    }
-  
+    };
+
     document.onkeyup = (event) => {
       switch (event.key) {
         case "ArrowLeft":
@@ -43,8 +43,6 @@ class Controls {
           break;
       }
       console.table(this);
-
-    }
+    };
   }
 }
-
