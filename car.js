@@ -1,4 +1,4 @@
-class Car {
+class Car {         // Box2D library is good for simulating the physics of a car. Could also try to use.
   constructor(x, y, width, height) {
     this.x = x;
     this.y = y;
@@ -10,7 +10,7 @@ class Car {
     this.maxSpeed = 3;
     this.friction = 0.05;
 
-    this.angle= 0;
+    this.angle = 0;
 
     this.control = new Controls();
   }
@@ -44,29 +44,37 @@ class Car {
       this.speed = 0;
     }
 
-    if (this.control.right) {
-      this.angle-=0.03;  
+    if (this.speed != 0) {
+      const flip = this.speed > 0 ? 1 : -1; //used to reverse control when car goes backwards
+      if (this.control.right) {
+        this.angle -= 0.03 * flip;
+      }
+
+      if (this.control.left) {
+        this.angle += 0.03 * flip;
+      }
     }
 
-    if (this.control.left) {
-      this.angle+=0.03;  
-    }
-
-    this.y -= this.speed;
+    this.x -= Math.sin(this.angle) * this.speed;
+    this.y -= Math.cos(this.angle) * this.speed;
   }
 
-  draw(ctx) {         //ctx is defined in main.js
+  draw(ctx) {
+    //ctx is defined in main.js
     ctx.save();
     ctx.translate(this.x, this.y);
-    ctx.rotate(-this.angle)
+    ctx.rotate(-this.angle);
 
     ctx.beginPath();
-    ctx.rect(           //draws rectangle
-      - this.width / 2,
-      - this.height / 2,
+    ctx.rect(
+      //draws rectangle
+      -this.width / 2,
+      -this.height / 2,
       this.width,
       this.height
     );
     ctx.fill();
+
+    ctx.restore();
   }
 }
