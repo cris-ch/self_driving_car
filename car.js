@@ -10,6 +10,8 @@ class Car {
     this.maxSpeed = 3;
     this.friction = 0.05;
 
+    this.angle= 0;
+
     this.control = new Controls();
   }
 
@@ -43,21 +45,25 @@ class Car {
     }
 
     if (this.control.right) {
-      this.x+=2;
+      this.angle-=0.03;  
     }
 
     if (this.control.left) {
-      this.x-=2;
+      this.angle+=0.03;  
     }
 
     this.y -= this.speed;
   }
 
-  draw(ctx) {
+  draw(ctx) {         //ctx is defined in main.js
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(-this.angle)
+
     ctx.beginPath();
-    ctx.rect(
-      this.x - this.width / 2,
-      this.y - this.height / 2,
+    ctx.rect(           //draws rectangle
+      - this.width / 2,
+      - this.height / 2,
       this.width,
       this.height
     );
