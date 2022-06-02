@@ -17,6 +17,7 @@ class Car {
     if (this.control.forward) {
       this.speed += this.acceleration;
     }
+
     if (this.control.reverse) {
       this.speed -= this.acceleration;
     }
@@ -35,6 +36,18 @@ class Car {
 
     if (this.speed < 0) {
       this.speed += this.friction;
+    }
+
+    if (Math.abs(this.speed) < this.friction) {
+      this.speed = 0;
+    }
+
+    if (this.control.right) {
+      this.x+=2;
+    }
+
+    if (this.control.left) {
+      this.x-=2;
     }
 
     this.y -= this.speed;
