@@ -16,6 +16,10 @@ class Car {         // Box2D library is good for simulating the physics of a car
   }
 
   update() {
+    this.#move();
+  }
+
+  #move() {
     if (this.control.forward) {
       this.speed += this.acceleration;
     }
