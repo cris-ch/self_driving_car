@@ -17,9 +17,9 @@ class Car {         // Box2D library is good for simulating the physics of a car
     this.control = new Controls();
   }
 
-  update() {
+  update(roadBorders) {
     this.#move();
-    this.sensor.update();
+    this.sensor.update(roadBorders);
   }
 
   #move() {
