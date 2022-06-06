@@ -36,7 +36,8 @@ class Road {
     ctx.lineWidth = 5;
     ctx.strokeStyle = "white";
 
-    for (let i = 1; i <= this.laneCount - 1; i++) { //loop to draw only the dashed lines
+    for (let i = 1; i <= this.laneCount - 1; i++) {
+      //loop to draw only the dashed lines
       const x = lerp(this.left, this.right, i / this.laneCount); // Use a Linear Interpolation function
 
       ctx.setLineDash([20, 20]);
@@ -47,7 +48,7 @@ class Road {
     }
 
     ctx.setLineDash([]);
-    this.borders.forEach(border => {
+    this.borders.forEach((border) => {
       ctx.beginPath();
       ctx.moveTo(border[0].x, border[0].y);
       ctx.lineTo(border[1].x, border[1].y);

@@ -7,16 +7,19 @@ class Car {         // Box2D library is good for simulating the physics of a car
 
     this.speed = 0;
     this.acceleration = 0.2;
-    this.maxSpeed = 3;
+    this.maxSpeed = 2;
     this.friction = 0.05;
 
     this.angle = 0;
 
+
+    this.sensor = new Sensor(this);
     this.control = new Controls();
   }
 
   update() {
     this.#move();
+    this.sensor.update();
   }
 
   #move() {
@@ -80,5 +83,7 @@ class Car {         // Box2D library is good for simulating the physics of a car
     ctx.fill();
 
     ctx.restore();
+
+    this.sensor.draw(ctx);
   }
 }
