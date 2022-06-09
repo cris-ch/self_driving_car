@@ -10,9 +10,9 @@ animate();
 
 function animate() {
   for (let i = 0; i < traffic.length; i++) {
-    traffic[i].update(road.borders);
+    traffic[i].update(road.borders, []); //empty arrays so traffic doesn't interact with other
   }
-  car.update(road.borders);
+  car.update(road.borders, traffic);
 
   canvas.height = window.innerHeight; //refreshes the canvas so we see the car position only in the current frame
 
@@ -21,9 +21,9 @@ function animate() {
 
   road.draw(ctx);
   for (let i = 0; i < traffic.length; i++) {
-    traffic[i].draw(ctx);
+    traffic[i].draw(ctx, "red");
   }
-  car.draw(ctx);
+  car.draw(ctx, "blue");
 
   ctx.restore();
   requestAnimationFrame(animate); //requests browser to update animation before next repaint. Calls animate function to animate another frame at next repaint.
