@@ -33,7 +33,6 @@ class Car {
           s == null ? 0 : 1 - s.offset
         );
         const outputs = NeuralNetwork.feedForward(offsets, this.brain);
-        console.log(outputs);
 
         if(this.brain) {
           this.control.forward = outputs[0];
@@ -125,7 +124,7 @@ class Car {
     this.y -= Math.cos(this.angle) * this.speed;
   }
 
-  draw(ctx, color) {
+  draw(ctx, color, drawSensor) {
     if (this.damaged) {
       ctx.fillStyle = "gray";
     } else {
@@ -138,7 +137,7 @@ class Car {
     }
     ctx.fill();
 
-    if (this.sensor) {
+    if (this.sensor && drawSensor) {
       this.sensor.draw(ctx);
     }
   }
